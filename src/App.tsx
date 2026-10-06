@@ -87,7 +87,13 @@ export default function App() {
   useEffect(() => {
     connectedWallet().then(setMe).catch(() => setMe(""));
     const eth = window.ethereum;
-    const onAccounts = (accounts: string[]) => setMe((accounts?.[0] ?? "").toLowerCase());
+    // A status line belongs to the wallet that sent it: clear it when the account changes.
+    const onAccounts = (accounts: string[]) => {
+      setMe((accounts?.[0] ?? "").toLowerCase());
+      recheck.current = null;
+      setStatus(IDLE);
+      setHighlight(null);
+    };
     eth?.on?.("accountsChanged", onAccounts);
   }, []);
 

@@ -7,4 +7,5 @@
   of the same source.
 - App: a release post with its tip jar and reply thread; reply box with a byte meter and the contract's own sentence
   beside every disabled action; balances panel to fund and withdraw; open-a-jar form showing the jar id before signing.
+- Run through the app on StudioNet (8 transactions, `RUNTIME_EVIDENCE.md`): a sincere reply moved the tip, the reply one word away moved nothing, the creator withdrew the earnings.
 - Tests: 57 Direct Mode contract tests, 28/28 mutants, frontend tests, calldata table and RPC probe, source hash; CI.

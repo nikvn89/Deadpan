@@ -9,17 +9,32 @@ Both deployments run the same frozen source, SHA-256 `d748b693b27408db77b0473c61
 
 ## Project run (address `0x72250b440D8cC32dbDb37E74D4e45E02a295aB9A`, through this app)
 
-Deploy tx: NOT RECORDED YET. Every row below: NOT RUN.
+Run date 2026-10-06, app at https://deadpan-nine.vercel.app, MetaMask on StudioNet. Deploy tx [`0x6a61139e…06ef394f`](https://explorer-studio.genlayer.com/tx/0x6a61139e2960e51e5e40bd7c46e6517d699f416ac81dee895845311a06ef394f). **8 transactions**, all FINALIZED.
 
-| # | Wallet | Action in the app | Expected | Tx hash | Result |
+Wallets: **A** = creator `0x6276095FAEA15108740445ff277fdA8c304657F4` · **B** `0x037f58E33c1Ec8fdA272361E0aAC1e31054a1CDE` · **C** `0x146e44881d35814bA582D265AF5b97ef2695ec8e`.
+Jar: `Release notes for version 3.1 of a notes app`, tip 0.001 GEN, id `25af63bab49c56c2c8aa679ab91b7683b7cda6c29ed65639824b6f5f9de1b5c4` (shown by the app before signing).
+
+| # | Wallet | Action in the app | Expected | Tx hash | Result (read back by the app from the accepted state) |
 |---|---|---|---|---|---|
-| P1 | A (creator) | Open a jar | jar OPEN, id shown before signing | NOT RUN | — |
-| P2 | B | Fund allowance | allowance rises by exactly the amount | NOT RUN | — |
-| P3 | B | Reply, a sincere one | SINCERE_PRAISE; tip moved; B allowance − tip | NOT RUN | — |
-| P4 | C | Fund allowance | allowance rises by exactly the amount | NOT RUN | — |
-| P5 | C | Reply, one word away from P3 | NOT_PRAISE; nothing moved | NOT RUN | — |
-| P6 | A | Reply box while connected as the creator | disabled: *The creator cannot reply to their own jar* (not sent) | — | NOT RUN |
-| P7 | A | Withdraw earnings | GEN reaches A; earnings 0 | NOT RUN | — |
+| P1 | A | Open a jar | jar OPEN | [`0x345d1447…162a0f30`](https://explorer-studio.genlayer.com/tx/0x345d144733a7f13ab1ee4aa01232b5363005926d3e32c46f917b8abe162a0f30) | SUCCESS; jar OPEN, tip 0.001 GEN, 0 replies |
+| P2 | B | Fund allowance 0.01 | B allowance 0.01 GEN | [`0x82b63d9f…174de3fe`](https://explorer-studio.genlayer.com/tx/0x82b63d9f0dab3f2ab412256fa4ab1bd02b40a8eef21d649b4a2d2d34174de3fe) | SUCCESS; B allowance 0.01 GEN |
+| P3 | B | Reply `Took me ten seconds to find the new search bar. Lovely work.` | SINCERE_PRAISE; tip moves | [`0x6fdf5c45…21c8f2be`](https://explorer-studio.genlayer.com/tx/0x6fdf5c45e09914d2e9fb25f36b95b09da510345b33536ea56f1d56a521c8f2be) | **SINCERE_PRAISE**, tip moved 0.001 GEN; B allowance **0.009** GEN; jar 1 of 1 paid |
+| P4 | C | Fund allowance 0.01 | C allowance 0.01 GEN | [`0xd65eaf4c…3c9d02bb`](https://explorer-studio.genlayer.com/tx/0xd65eaf4ceecf3be0b077c1fcd27adf225f468ccbe393979b88a047383c9d02bb) | SUCCESS |
+| P5 | C | Reply `Took me ten minutes to find the new search bar. Lovely work.` | NOT_PRAISE; nothing moves | [`0xbf4fd741…b7ebe841`](https://explorer-studio.genlayer.com/tx/0xbf4fd741804346a010cbf7fd4ef19177398558ca8f5c967c0ed6681cb7ebe841) | **NOT_PRAISE**, no GEN moved; C allowance **0.01** GEN unchanged; jar 1 of 2 paid |
+| P6 | A | Reply box while connected as the creator | disabled with *The creator cannot reply to their own jar* | — (not sent) | disabled with that sentence; A earnings 0.001 GEN |
+| P7 | A | Withdraw earnings | GEN reaches A; earnings 0 | [`0x2b8dd37e…d5c90c0b`](https://explorer-studio.genlayer.com/tx/0x2b8dd37e90e2ac6583c96718429595f010f5d4a00b1af68b09f91b87d5c90c0b) | SUCCESS; A earnings **0** GEN. Native transfer from the contract: [`0x9a643ba2…27181d2d`](https://explorer-studio.genlayer.com/tx/0x9a643ba220c3c38bfee2130879e82339be1cb84038644204aefde71527181d2d) |
+
+B and C also saw Reply disabled with *You have already replied to this jar* after replying; that reply was not sent.
+
+Screenshots:
+
+![Thread: one sincere reply moved the tip, the reply one word away moved nothing](docs/evidence/1-thread-sincere-and-not.png)
+
+![Creator connected: the reply box is disabled with the contract's sentence](docs/evidence/2-creator-reply-disabled.png)
+
+![Creator after withdrawing earnings, with the withdrawal tx in the status panel](docs/evidence/3-creator-withdrew-earnings.png)
+
+Jar just opened: `docs/evidence/0-jar-opened.png`.
 
 Predictable reverts (creator reply, second reply) are **not sent** from the app: the disabled button with the
 contract's sentence is the evidence.

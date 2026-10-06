@@ -55,7 +55,13 @@ RPC. The reply box shows a live byte meter and disables Reply above 255 bytes.
 
 ## On-chain runs
 
-See `RUNTIME_EVIDENCE.md`: the Intelligent Contract run (24 transactions) and the Project run through this app.
+See `RUNTIME_EVIDENCE.md`: the Project run through this app (8 transactions) and the Intelligent Contract run (24
+transactions), one hash per row.
+
+Project run through the app: B's `…ten seconds…` reply → **SINCERE_PRAISE**, 0.001 GEN moved, B allowance 0.01 → 0.009;
+C's `…ten minutes…` reply on the same jar → **NOT_PRAISE**, nothing moved, C allowance stays 0.01; the creator's reply
+box was disabled with the contract's sentence; the creator withdrew 0.001 GEN and earnings read 0. Every result was
+reported by the app only after it re-read the accepted state: **PASS**.
 
 Summary of the Intelligent Contract run:
 

@@ -16,6 +16,7 @@ only when a reply is judged `SINCERE_PRAISE`.
 | Contract source | `contracts/MeantIt.py` (SHA-256 in `SOURCE_SHA256.txt`) |
 | Project deployment | [`0x72250b440D8cC32dbDb37E74D4e45E02a295aB9A`](https://explorer-studio.genlayer.com/address/0x72250b440D8cC32dbDb37E74D4e45E02a295aB9A) |
 | Intelligent Contract | MeantIt — the same frozen source, deployed separately at [`0xCa2efdD3A070016721eC4167F81EceFD0adD1410`](https://explorer-studio.genlayer.com/address/0xCa2efdD3A070016721eC4167F81EceFD0adD1410) |
+| Live app | https://deadpan-nine.vercel.app |
 | Evidence | `RUNTIME_EVIDENCE.md` (one tx hash per row) · `TESTING.md` |
 
 ## What it does
@@ -31,7 +32,9 @@ read each reply **once**, together with the release title, and decide one thing:
 
 `Took me ten seconds to find the new export button. Lovely work.` pays.
 `Took me ten minutes to find the new export button. Lovely work.` does not. One word apart, same writer, same
-allowance — that pair is the core test, and it passed on StudioNet.
+allowance — that pair is the core test, and it passed on StudioNet, both in the contract run and through this app.
+
+![One sincere reply moved the tip; the reply one word away moved nothing](docs/evidence/1-thread-sincere-and-not.png)
 
 Many readers can pay one creator, with nobody approving anything. The GEN that moves is always the writer's own
 pledged allowance. Each wallet replies once per jar; the creator cannot reply to their own jar. When the model's answer
