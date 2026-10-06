@@ -6,6 +6,9 @@
 // the model: comment / close_jar use an unknown jar id, the withdrawals come
 // from an empty wallet, fund_allowance carries no value.
 //
+// The public RPC allows 30 requests per minute, so rows are spaced out and a
+// rate-limit answer is waited out and retried instead of counted as a failure.
+//
 //   node tools/probe-calldata.mjs <contract_address> [rpc_url]
 import { createClient } from "genlayer-js";
 import { studionet } from "genlayer-js/chains";
@@ -32,16 +35,37 @@ function text(e) {
 }
 
 const EXPECTED = ["Unknown jar id", "Send a positive amount", "Not enough allowance", "Nothing to withdraw"];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const SPACING_MS = 2500;
+const RATE_WAIT_MS = 65_000;
+
+async function simulate(r) {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      await client.simulateWriteContract({ address, functionName: r.method, args: r.args, account: { address: EMPTY } });
+      return null;
+    } catch (e) {
+      const t = text(e);
+      if (/rate limit/i.test(t) && attempt < 3) {
+        console.log(`      rate limited, waiting ${RATE_WAIT_MS / 1000}s`);
+        await sleep(RATE_WAIT_MS);
+        continue;
+      }
+      return t;
+    }
+  }
+}
+
 let failed = 0;
 for (const [group, rows] of [["HARD BLOCK", hardBlockRows()], ["MEASURE ONLY", measureOnlyRows()]]) {
   console.log(group);
   for (const r of rows) {
+    await sleep(SPACING_MS);
     let verdict;
-    try {
-      await client.simulateWriteContract({ address, functionName: r.method, args: r.args, account: { address: EMPTY } });
+    const t = await simulate(r);
+    if (t === null) {
       verdict = "decoded (call returned)";
-    } catch (e) {
-      const t = text(e);
+    } else {
       if (/superfluous bytes/i.test(t)) verdict = "CLIFF: " + t.slice(0, 120);
       else if (EXPECTED.some((x) => t.includes(x))) verdict = "decoded, reverted with the contract's own sentence";
       else if (/execution failed/i.test(t)) verdict = "decoded, execution failed on the node (StudioNet gen_call does not return the sentence)";
