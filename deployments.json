@@ -1,0 +1,8 @@
+{
+  "network": "GenLayer StudioNet",
+  "chain_id": 61999,
+  "contract_file": "contracts/MeantIt.py",
+  "source_sha256": "d748b693b27408db77b0473c61444bc4fca3dd2868f5c4e0617a81ed5acc7482",
+  "intelligent_contract": "0xCa2efdD3A070016721eC4167F81EceFD0adD1410",
+  "project": "0x72250b440D8cC32dbDb37E74D4e45E02a295aB9A"
+}

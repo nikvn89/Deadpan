@@ -1,0 +1,47 @@
+{
+  "creator": "0x3065e31b1d993d7c0d59e6786844cba56780b2d3",
+  "jars": [
+    {
+      "title": "Release notes for version 2.4 of a photo app",
+      "normalized": "Release notes for version 2.4 of a photo app",
+      "py_len": 44,
+      "jar_id": "f9ab176b1db5528a6549d872972294ed80ac317a9d5dfaed7fb620f73be03225"
+    },
+    {
+      "title": "Release notes for version 2.5 of a photo app",
+      "normalized": "Release notes for version 2.5 of a photo app",
+      "py_len": 44,
+      "jar_id": "9539daedc2b83ae59cfd1c98858a5c100514b0bcded389fba43b763ff8b8c5fe"
+    },
+    {
+      "title": "  Release notes\tfor version 3.0\n of a photo app  ",
+      "normalized": "Release notes for version 3.0 of a photo app",
+      "py_len": 44,
+      "jar_id": "7911d3b72f9276449e1770cfabbc6011d417dbadbd013dff2ee06031195d8d00"
+    },
+    {
+      "title": "\u001cWeekly changelog\u001f",
+      "normalized": "Weekly changelog",
+      "py_len": 16,
+      "jar_id": "5ad6b541f7682e92cc2fe2ab5817be069f052e70c0e2152634e22ecd527f1eb7"
+    },
+    {
+      "title": "Changelogweek\u001d12\u001efinal",
+      "normalized": "Changelog week 12 final",
+      "py_len": 23,
+      "jar_id": "ab2772af260efa1cdd4ecc08571db0b7c12884a5f995265e038cba9c6b2f718a"
+    },
+    {
+      "title": "﻿Release notes with a byte order mark",
+      "normalized": "﻿Release notes with a byte order mark",
+      "py_len": 37,
+      "jar_id": "a59873d19bc99a9f353bff257075e1aa16370ac5dd9ea1966e14d5c726190aeb"
+    },
+    {
+      "title": "Notes de version — hiver　📸",
+      "normalized": "Notes de version — hiver 📸",
+      "py_len": 26,
+      "jar_id": "414b01e716d44e73dcae9c20444983fefa2527ce946ac92a2535b73daef5646f"
+    }
+  ]
+}
